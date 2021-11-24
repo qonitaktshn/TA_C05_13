@@ -30,7 +30,7 @@
 | NPM | Nama Lengkap | Fitur yang akan diselesaikan  |
 | ----------| --- | ---------- | 
 | 1906353776 | Raihan Rizqi Muhtadiin | 7 |
-| 1906307233 | Qonita Nur Iffat | 10 11 |
+| 1906307233 | Qonita Nur Iffat | 10 |
 | 1906299080 | Puspita Sari Matovanni | 8 |
-| 1906399410 | Bintang Samudro | 9 |
+| 1906399410 | Bintang Samudro | 9 11 |
 ---

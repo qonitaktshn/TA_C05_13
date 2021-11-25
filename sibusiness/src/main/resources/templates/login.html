@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container mt-5">
+    <div class="d-flex justify-content-center">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header" style="font-size: 24px;">
+                    Log In
+                </div>
+                <div class="card-body">
+                    <div th:if="${param.error}">
+                        <span style="color: red">Username atau password yang dimasukkan keliru. Harap coba lagi.</span>
+                    </div>
+                    <form th:action="@{/login}" method="POST">
+                        <div class="row form-group">
+                            <label class="col-sm-4">Username:</label>
+                            <input type="text" class="col-sm-8 form-control input-sm" name="username">
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-sm-4">Password:</label>
+                            <input type="password" class="col-sm-8 form-control input-sm" name="password">
+                        </div>
+                        <button type="submit" class="btn float-right" style="background-color: #fc997c;">Sign In</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>

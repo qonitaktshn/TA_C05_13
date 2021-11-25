@@ -1,0 +1,11 @@
+.btn-first {
+    background-color: #fc997c;
+    min-width: 16rem;
+}
+
+.btn-second{
+    background-color: #ffffff;
+    outline-style: solid;
+    outline-color: coral;
+    min-width: 16rem;
+}

@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserModel addUser(UserModel user) {
         String pass = encrypt(user.getPassword());
-        user. setPassword(pass);
+        user.setPassword(pass);
         System.out.println(user.getRole());
         return userDb.save(user);
     }
@@ -35,5 +35,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserModel> getListUser() {
         return userDb.findAll();
+    }
+
+    @Override
+    public UserModel getUserByUsername(String username) {
+        UserModel user = userDb.findByUsername(username);
+        return user;
+    }
+
+    @Override
+    public UserModel updateUser(UserModel user) {
+        return userDb.save(user);
     }
 }

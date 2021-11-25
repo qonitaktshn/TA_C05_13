@@ -1,4 +1,4 @@
-package apap.tugasakhir.sibusiness.service;
+package apap.tugasakhir.sibusiness.security;
 
 import apap.tugasakhir.sibusiness.model.UserModel;
 import apap.tugasakhir.sibusiness.repository.UserDB;

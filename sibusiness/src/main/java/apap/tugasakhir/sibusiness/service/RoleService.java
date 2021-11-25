@@ -1,4 +1,8 @@
 package apap.tugasakhir.sibusiness.service;
 
-public class RoleService {
+import apap.tugasakhir.sibusiness.model.RoleModel;
+import java.util.List;
+
+public interface RoleService {
+    List<RoleModel> getListRole();
 }

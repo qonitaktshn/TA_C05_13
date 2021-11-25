@@ -30,11 +30,12 @@
                     <td th:text="${user.role.role}"></td>
                     <td>
                         <a class="btn btn-danger" th:href="@{/user/update/} + ${user.username}">Update</a>
+                        <a class="btn btn-info" th:href="@{/user/updatePassword/} + ${user.username}">Change Password</a>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <a class="btn btn-primary" href="/">BACK</a>
-        <a th:href="@{/user/add}" class="mx-2 btn btn-outline-warning">Tambah User Baru</a>
+        <a class="btn btn-primary" href="/">Home</a>
+        <a th:href="@{/user/add}" class="mx-2 btn btn-warning">Tambah User Baru</a>
     </div>
 </body>

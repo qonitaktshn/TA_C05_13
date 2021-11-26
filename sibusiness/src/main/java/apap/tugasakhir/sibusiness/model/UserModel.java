@@ -34,7 +34,7 @@ public class UserModel implements Serializable {
 
     @NotNull
     @Lob
-    @Column(name = "password", nullable = false, unique = true)
+    @Column(name = "password", nullable = false)
     private String password;
 
     @ManyToOne(fetch =  FetchType.EAGER)

@@ -10,34 +10,35 @@
 </head>
 
 <body>
-<nav th:replace="fragments/fragment :: navbar (pagetitle='View All')"></nav>
-<div class="container">
-    <div class="row justify-content-center">
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-center">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header">Tambah User Baru</div>
+                <div class="card-header" style="font-size: 2rem;">Tambah User Baru</div>
                 <div class="card-body">
-                    <form th:action="@{/user/add}" method="POST">
-                        <label>User Name</label>
-                        <input type="text" name="username" class="form-control" />
+                    <form th:action="@{/user/add}" th:object="${user}" method="POST">
+
+                        <label>Username</label>
+                        <input required type="text" name="username" class="form-control" />
 
                         <label>Password</label>
                         <input required type="password" name="password" class="form-control" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" title="password harus mengandung angka, huruf besar, huruf kecil, dan simbol serta minimal memiliki 8 karakter"/>
 
                         <label>Role</label>
-                        <select name="role" class="form-control">
-                            <option selected value=""> -- Pilih Role -- </option>
+                        <select th:field="*{role}" class="form-control">
                             <option th:each="role : ${listRole}" th:value="${role.id}" th:text="${role.role}"></option>
                         </select>
                         <br>
-                        <button type="submit" class="btn btn-danger">Simpan</button>
-                        <a class="btn btn-outline-danger" href="/">Home</a>
+
+                        <a class="btn btn-second-user" th:href="@{/user/view-all}">Batal</a>
+                        <button type="submit" class="mx-2 btn btn-first-user float-right">Simpan</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<footer th:replace="fragments/fragment :: footer"></footer>
 </body>
-
 </html>

@@ -19,7 +19,7 @@
 </head>
 <body>
 <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light" style="background-color: #2e4c6d;">
-    <a class="navbar-brand font-weight-bold" style="color: #daddfc;" th:href="@{/}">SI-BUSINESS</a>
+    <a class="navbar-brand font-weight-bold" style="color: #fc997c;" th:href="@{/}">SI-BUSINESS</a>
     <button
             class="navbar-toggler"
             type="button"
@@ -34,7 +34,7 @@
     <div sec:authorize="isAuthenticated()" class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
             <li th:classappend="${page == 'User'} ? active : ''" class="nav-item">
-                <a class="nav-link" style="color: #daddfc;" href="#">User</a>
+                <a sec:authorize="hasAuthority('Manager Business')" class="nav-link" style="color: #daddfc;" th:href="@{/user/view-all}">User</a>
             </li>
             <li th:classappend="${page == 'Coupon'} ? active : ''" class="nav-item">
                 <a class="nav-link" style="color: #daddfc;" href="#">Coupon</a>
@@ -48,7 +48,7 @@
         </ul>
     </div>
 </nav>
-<footer th:fragment="footer" class="page-footer fixed-bottom font-small pl-1" style="background: rgba(180, 198, 166, .75);">
+<footer th:fragment="footer" class="page-footer mt-auto font-small pl-1" style="background: rgba(180, 198, 166, .75);">
     <div class="footer-copyright text-center py-3">Copyright © SiBusiness - 2021</div>
 </footer>
 </body>

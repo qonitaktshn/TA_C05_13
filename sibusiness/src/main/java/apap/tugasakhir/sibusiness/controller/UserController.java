@@ -9,14 +9,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
     @Autowired
     private UserService userService;
+
     @Autowired
     private RoleService roleService;
 
@@ -26,14 +29,22 @@ public class UserController {
         List<RoleModel> listRole = roleService.getListRole();
         model.addAttribute("user", user);
         model.addAttribute("listRole", listRole);
-        return "form-add-user" ;
+        return "form-add-user";
     }
 
     @PostMapping(value = "/add")
-    private String addUserSubmit(@ModelAttribute UserModel user, Model model) {
-        userService.addUser(user);
-        model.addAttribute("user", user);
-        return "redirect:/";
+    private String addUserSubmit(
+            @ModelAttribute UserModel user,
+            RedirectAttributes redirectAttributes,
+            Model model) {
+        if (userService.getUserByUsername(user.getUsername()) == null) {
+            userService.addUser(user);
+            model.addAttribute("user", user);
+            redirectAttributes.addFlashAttribute("message", "User berhasil ditambahkan.");
+        } else {
+            redirectAttributes.addFlashAttribute("message", "User gagal ditambahkan karena username telah dipakai user lain. Silakan coba lagi.");
+        }
+        return "redirect:/user/view-all";
     }
 
     @GetMapping("/view-all")
@@ -58,10 +69,11 @@ public class UserController {
     @PostMapping(value = "/update")
     private String updateUserSubmit(
             @ModelAttribute UserModel user,
-            Model model
+            RedirectAttributes redirectAttributes
     ) {
         userService.updateUser(user);
-        return "update-user";
+        redirectAttributes.addFlashAttribute("message", "Username/role berhasil diubah.");
+        return "redirect:/user/view-all";
     }
 
     @GetMapping("/updatePassword/{username}")
@@ -80,19 +92,20 @@ public class UserController {
             @RequestParam(value = "oldPassword") String oldPassword,
             @RequestParam(value = "newPassword") String newPassword,
             @RequestParam(value = "confirmedNewPassword") String confirmedNewPassword,
-            Model model) {
+            RedirectAttributes redirectAttributes) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        if(passwordEncoder.matches(oldPassword, user.getPassword())) {
+        if (passwordEncoder.matches(oldPassword, user.getPassword())) {
             if (newPassword.equals(confirmedNewPassword)) {
                 String pass = userService.encrypt(newPassword);
                 user.setPassword(pass);
                 userService.updateUser(user);
-                return "update-user";
+                redirectAttributes.addFlashAttribute("message", "Password user berhasil diubah.");
             } else {
-                return "not-matches-kriteria";
+                redirectAttributes.addFlashAttribute("message", "Password baru dan konfirmasinya belum sama. Silakan coba lagi.");
             }
         } else {
-            return "not-matches-kriteria";
+            redirectAttributes.addFlashAttribute("message", "Password lama salah. Silakan coba lagi.");
         }
+        return "redirect:/user/view-all";
     }
 }

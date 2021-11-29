@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <meta charset="UTF-8">
-    <title> Home </title>
+    <title>Si-Business</title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
     <link rel="stylesheet" th:href="@{/css/home-style.css}" />
@@ -16,19 +16,19 @@
         <h2 style="text-align: center" th:text=" 'Halo ' + ${#httpServletRequest.remoteUser} + '!'">Login as</h2>
         <h2 style="text-align: center">Selamat datang di SI-BUSINESS!</h2>
         <div class="d-flex justify-content-center">
-            <a href="#" class="mx-2 btn">Lihat daftar user</a>
+            <a sec:authorize="hasAuthority('Manager Business')" th:href="@{/user/view-all}" class="mx-2 btn btn-home">Lihat daftar user</a>
         </div>
         <div class="my-3 d-flex justify-content-center">
-            <a href="#" class="mx-2 btn">Lihat daftar permintaan kupon</a>
+            <a href="#" class="mx-2 btn btn-home">Lihat daftar permintaan kupon</a>
         </div>
         <div class="my-3 d-flex justify-content-center">
-            <a href="#" class="mx-2 btn">Lihat daftar kupon</a>
+            <a href="#" class="mx-2 btn btn-home">Lihat daftar kupon</a>
         </div>
         <div class="my-3 d-flex justify-content-center">
-            <a class="btn" href="#">Lihat daftar mesin SI-FACTORY</a>
+            <a href="#" class="mx-2 btn btn-home">Lihat daftar mesin SI-FACTORY</a>
         </div>
         <div class="my-3 d-flex justify-content-center">
-            <a class="btn" href="#">Lihat daftar item SI-ITEM</a>
+            <a href="#" class="mx-2 btn btn-home">Lihat daftar item SI-ITEM</a>
         </div>
     </div>
 </div>

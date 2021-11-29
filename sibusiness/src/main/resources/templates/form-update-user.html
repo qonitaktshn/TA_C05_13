@@ -15,19 +15,19 @@
     <div class="d-flex justify-content-center">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header" style="font-size: 2rem;">Tambah User Baru</div>
+                <div class="card-header" style="font-size: 2rem;">Update Username/Role</div>
                 <div class="card-body">
-                    <form th:action="@{/user/add}" th:object="${user}" method="POST">
+                    <form th:action="@{/user/update}" th:object="${user}" method="POST">
+                        <input type="hidden" th:field="*{id}" />
 
-                        <label>Username</label>
-                        <input required type="text" name="username" class="form-control" />
+                        <label>User Name</label>
+                        <input type="text" name="username" class="form-control" th:value="*{username}" />
 
-                        <label>Password</label>
-                        <input required type="password" name="password" class="form-control" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" title="password harus mengandung angka, huruf besar, huruf kecil, dan simbol serta minimal memiliki 8 karakter"/>
+                        <input type="hidden" th:field="*{password}" name="password" class="form-control"/>
 
                         <label>Role</label>
-                        <select th:field="*{role}" class="form-control">
-                            <option th:each="role : ${listRole}" th:value="${role.id}" th:text="${role.role}"></option>
+                        <select name="role" class="form-control">
+                            <option  th:selected="${role.id == selectedRole}" th:each="role : ${listRole}" th:value="${role.id}" th:text="${role.role}"></option>
                         </select>
                         <br>
 

@@ -35,19 +35,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    /*@Autowired
+    @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .passwordEncoder(encoder())
                 .withUser("pebisnispemula").password(encoder().encode("sibusiness"))
                 .roles("Manager Business");
-    }*/
+    }
 
     @Autowired
     private UserDetailsService userDetailsService;
 
-    @Autowired
+    /*@Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
-    }
+    }*/
 }

@@ -108,12 +108,5 @@ public class UserController {
         }
         return "redirect:/user/view-all";
     }
-
-    @GetMapping("/view-all")
-    private String getUsers(Model model) {
-        List<UserModel> listUser = userService.getListUser();
-        model.addAttribute("listUser", listUser);
-        return "viewall-user";
-    }
     
 }

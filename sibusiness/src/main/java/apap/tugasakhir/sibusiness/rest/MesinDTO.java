@@ -1,4 +1,4 @@
 package apap.tugasakhir.sibusiness.rest;
 
-public class MesinDetail {
+public class MesinDTO {
 }

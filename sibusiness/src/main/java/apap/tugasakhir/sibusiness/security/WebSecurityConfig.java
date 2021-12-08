@@ -24,6 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/js/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/coupon/**").permitAll()
                 .antMatchers("/user/**").hasAuthority("Manager Business")
+                .antMatchers(HttpMethod.GET, "/api/v1/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()
@@ -39,13 +40,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    /*@Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .passwordEncoder(encoder())
-                .withUser("pebisnispemula").password(encoder().encode("sibusiness"))
-                .roles("Manager Business");
-    }*/
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.inMemoryAuthentication()
+//                .passwordEncoder(encoder())
+//                .withUser("pebisnispemula").password(encoder().encode("sibusiness"))
+//                .roles("Manager Business");
+//    }
 
     @Autowired
     private UserDetailsService userDetailsService;

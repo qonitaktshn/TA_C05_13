@@ -23,32 +23,27 @@ import java.util.List;
 public class ItemFactoryModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idItemFactory;
+    private Long id;
 
     @NotNull
     @Size(max=50)
-    @Column(name="name", nullable=false)
+    @Column(name="nama", nullable=false)
     private String nama;
 
     @Column(name="status", nullable=true)
     private Integer status;
 
     @NotNull
-    @Column(name="stock", nullable=false)
+    @Column(name="stok", nullable=false)
     private Integer stok;
 
     @NotNull
-    @Column(name="price", nullable=false)
+    @Column(name="harga", nullable=false)
     private Integer harga;
 
     @NotNull
-    @Column(name="category", nullable=false)
+    @Column(name="kategori", nullable=false)
     private Integer kategori;
-
-    @NotNull
-    @Size(max=50)
-    @Column(name="cluster", nullable=false)
-    private String cluster;
 
     @Column(name="approver", nullable = true)
     private String approver;

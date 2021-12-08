@@ -3,6 +3,7 @@ package apap.tugasakhir.sibusiness.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -23,9 +24,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/v1/coupon/**").permitAll()
                 .antMatchers("/user/**").hasAuthority("Manager Business")
-                .antMatchers(HttpMethod.POST, "/api/v1/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/list-item-factory").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v1/**").permitAll()
                 .anyRequest().authenticated()
+                .and()
+                .httpBasic()
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()

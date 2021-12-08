@@ -29,6 +29,7 @@ public class CouponModel implements Serializable {
 
     @NotNull
     @Column(nullable = false)
+    @JsonIgnore
     private Boolean status;
 
     @Size(max = 16)
@@ -62,5 +63,6 @@ public class CouponModel implements Serializable {
             name = "coupon_coupontype",
             joinColumns = @JoinColumn(name = "no_coupon"),
             inverseJoinColumns = @JoinColumn(name = "no_coupontype"))
+    @JsonIgnore
     List<CouponTypeModel> listCouponType;
 }

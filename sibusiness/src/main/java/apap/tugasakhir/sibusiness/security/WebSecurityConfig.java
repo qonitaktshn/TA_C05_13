@@ -3,6 +3,7 @@ package apap.tugasakhir.sibusiness.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,6 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/user/**").hasAuthority("Manager Business")
+                .antMatchers(HttpMethod.GET, "/api/v1/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -35,13 +37,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    /*@Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .passwordEncoder(encoder())
-                .withUser("pebisnispemula").password(encoder().encode("sibusiness"))
-                .roles("Manager Business");
-    }*/
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.inMemoryAuthentication()
+//                .passwordEncoder(encoder())
+//                .withUser("pebisnispemula").password(encoder().encode("sibusiness"))
+//                .roles("Manager Business");
+//    }
 
     @Autowired
     private UserDetailsService userDetailsService;

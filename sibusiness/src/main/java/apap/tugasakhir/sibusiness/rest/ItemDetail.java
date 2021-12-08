@@ -9,6 +9,9 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ItemDetail {
 
+    @JsonProperty("uuid")
+    private String uuid;
+
     @JsonProperty("harga")
     private Integer harga;
 
@@ -19,5 +22,7 @@ public class ItemDetail {
     private String nama;
 
     @JsonProperty("stok")
-    private Integer stok;
+    private Long stok;
+
+
 }

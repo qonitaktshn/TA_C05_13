@@ -1,5 +1,6 @@
 package apap.tugasakhir.sibusiness.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,5 +28,6 @@ public class CouponTypeModel implements Serializable {
 
     //Relasi dengan CouponModel
     @ManyToMany(mappedBy = "listCouponType")
+    @JsonIgnore
     List<CouponModel> listCoupon;
 }

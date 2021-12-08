@@ -59,3 +59,4 @@ public class UserModel implements Serializable {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private ItemFactoryModel item_factory;
 }
+

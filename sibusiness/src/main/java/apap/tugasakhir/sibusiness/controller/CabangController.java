@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import apap.tugasakhir.sibusiness.rest.CabangDetail;
 import apap.tugasakhir.sibusiness.restservice.CabangRestService;
+import reactor.core.publisher.Mono;
 
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -32,9 +33,8 @@ public class CabangController {
             Model model
     ) {
         System.out.println(cabang.getNama());
-        CabangDetail response = cabangService.addCabang(cabang);
-        System.out.println(response.getNama());
-        System.out.println(response.getAlamat());
+        Mono<CabangDetail> response = cabangService.addCabang(cabang);
+        System.out.println(response.equals(cabang));
         return "form-add-cabang";
     }
 }

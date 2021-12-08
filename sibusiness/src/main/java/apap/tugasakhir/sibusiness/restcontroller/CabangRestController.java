@@ -1,4 +1,5 @@
 package apap.tugasakhir.sibusiness.restcontroller;
 
-public class MesinRestController {
+public class CabangRestController {
+    
 }

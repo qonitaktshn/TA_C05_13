@@ -51,4 +51,11 @@ public class UserModel implements Serializable {
     @OneToMany(mappedBy = "creator", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<CouponModel> userCoupon;
+
+    // Relasi dengan ItemFactory
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JsonIgnore
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private ItemFactoryModel item_factory;
 }

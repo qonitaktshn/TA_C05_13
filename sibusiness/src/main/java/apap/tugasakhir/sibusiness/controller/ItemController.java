@@ -25,22 +25,6 @@ public class ItemController {
     @Autowired
     private ItemRestService itemRestService;
 
-    // @GetMapping("/view-all")
-    // private String addFormItemPage(Model model){
-    //     List<ItemFactoryModel> listItem = itemRestService.getListItem();
-    //     model.addAttribute("listItem", listItem);
-    //     return "list-item";
-    // }
-    
-    //harusnya ga disini
-    // @PostMapping(value="/")
-    // private String postRequest(ItemFactoryModel item) {
-    //     System.out.println("masukk");
-    //     // System.out.println(itemRestService.addItem(item));
-    //     itemRestService.addItem(item);
-    //     return "home";
-    // }
-
     @GetMapping(value = "/list-item")
     private String getListItem(Model model) {
         Map<String, List<ItemDetail>> itemsByKategori = itemRestService.retrieveListItem();

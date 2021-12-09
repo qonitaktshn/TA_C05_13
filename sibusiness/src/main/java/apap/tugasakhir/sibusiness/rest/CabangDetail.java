@@ -22,4 +22,7 @@ public class CabangDetail {
 
     @JsonProperty("no_telp")
     private String noTelp;
+
+    @JsonProperty("status")
+    private Integer status;
 }

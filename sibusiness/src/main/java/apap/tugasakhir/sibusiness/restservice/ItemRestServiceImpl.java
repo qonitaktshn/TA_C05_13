@@ -30,9 +30,9 @@ public class ItemRestServiceImpl implements ItemRestService {
             ItemDetail item = new ItemDetail();
             item.setUuid(j.get("uuid").asText());
             item.setNama(j.get("nama").asText());
-            item.setHarga(j.get("harga").intValue());
+            item.setHarga(j.get("harga").asLong());
             item.setStok(j.get("stok").asLong());
-            item.setKategori(j.get("kategori").intValue());
+            item.setKategori(j.get("kategori").asText());
             items.add(item);
         }
         for (ItemDetail item:items) {
@@ -52,9 +52,9 @@ public class ItemRestServiceImpl implements ItemRestService {
         ItemDetail item = new ItemDetail();
         item.setUuid(uuid);
         item.setNama(jsonNode.get("nama").asText());
-        item.setHarga(jsonNode.get("harga").intValue());
+        item.setHarga(jsonNode.get("harga").asLong());
         item.setStok(jsonNode.get("stok").asLong());
-        item.setKategori(jsonNode.get("kategori").intValue());
+        item.setKategori(jsonNode.get("kategori").asText());
         return item;
     }
 }

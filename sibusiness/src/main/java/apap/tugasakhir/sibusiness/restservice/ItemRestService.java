@@ -10,7 +10,4 @@ import java.util.Map;
 public interface ItemRestService {
     Map<String, List<ItemDetail>> retrieveListItem();
     ItemDetail getItemByUUID(String uuid);
-    // void addItem(ItemFactoryModel item);
-    // List<ItemFactoryModel> getListItem();
-
 }

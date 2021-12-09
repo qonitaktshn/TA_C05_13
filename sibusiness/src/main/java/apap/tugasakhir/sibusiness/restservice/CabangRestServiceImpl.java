@@ -21,23 +21,16 @@ public class CabangRestServiceImpl implements CabangRestService {
     } 
     
     @Override
-    public Mono<CabangDetail> addCabang(CabangDetail cabang) {
-        MultiValueMap<String, Object> data = new LinkedMultiValueMap<>();
-        data.add("nama", cabang.getNama());
-        data.add("alamat", cabang.getUkuran());
-        data.add("ukuran", cabang.getUkuran());
-        data.add("no_telp", cabang.getNoTelp());
+    public CabangDetail addCabang(CabangDetail cabang) {
         
-        System.out.println("masuk");
-        return this.webClient
-            .post()
-            .uri("/cabang")
-            // .bodyValue(cabang)
-            .syncBody(data)
-            .retrieve()
-            .bodyToMono(CabangDetail.class);
-            // .block();
+        CabangDetail post = this.webClient.post()
+                            .uri("/cabang")
+                            .body(Mono.just(cabang), CabangDetail.class)
+                            .retrieve().bodyToMono(CabangDetail.class).block();
+        
+                            // System.out.println(cabang.getNama());
+                            System.out.println(post.getNama());
 
-            // return response;
+        return post;
     }
 }

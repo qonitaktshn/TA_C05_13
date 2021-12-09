@@ -6,6 +6,6 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 
 public interface CabangRestService {
-    Mono<CabangDetail> addCabang(CabangDetail cabang);
+    CabangDetail addCabang(CabangDetail cabang);
     // void addCabang();
 }

@@ -15,9 +15,6 @@ public class CouponRestController {
     private CouponRestService couponRestService;
 
     @GetMapping(value = "/coupon/allCoupon")
-    /*private List<CouponModel> getListCodedCoupon() {
-        return couponRestService.getListCodedCoupon();
-    }*/
     private BaseResponse<List<CouponModel>> getListCodedCoupon() {
         BaseResponse<List<CouponModel>> response = new BaseResponse<>();
         response.setStatus(200);

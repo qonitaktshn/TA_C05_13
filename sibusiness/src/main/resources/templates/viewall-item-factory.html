@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Si-Business</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/user-style.css}" />
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="d-flex justify-content-center">
+    <div class="container m-5 p-5" style="background: rgba(218, 221, 252, .75); border-radius: 10px">
+        <div th:text="${message}" class="alert alert-info" role="alert"></div>
+        <h2 style="text-align: center">Daftar Seluruh Request Item Factory</h2>
+        <br>
+        <table class="table" style="background-color: #daddfc; text-align: center;">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Name</th>
+                <th scope="col">Status</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Price</th>
+                <th scope="col">Category</th>
+                <th scope="col">Approver</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="itemFactory, iterationStatus: ${listItemFactory}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${itemFactory.nama}"></td>
+                <td th:text="${itemFactory.status}"></td>
+                <td th:text="${itemFactory.stok}"></td>
+                <td th:text="${itemFactory.harga}"></td>
+                <td th:text="${itemFactory.kategori}"></td>
+                <td th:text="${itemFactory.approver}"></td>
+                <td>
+                    <a class="btn btn-first-user" th:href="@{/}">Accept</a>
+                    <a class="btn btn-second-user" th:href="@{/}">Decline</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a class="btn btn-second-user" th:href="@{/api/v1/list-item}">Kembali</a>
+    </div>
+</div>
+<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>

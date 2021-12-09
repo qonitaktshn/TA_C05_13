@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Si-Business</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/user-style.css}" />
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="d-flex justify-content-center">
+    <div class="container m-5 p-5" style="background: rgba(218, 221, 252, .75); border-radius: 10px">
+        <div th:text="${message}" class="alert alert-info" role="alert"></div>
+        <h2 style="text-align: center">Daftar Seluruh Mesin</h2>
+        <br>
+        <div>
+            <select class="btn btn-first-user" onclick="window.location.href = this.value">
+                <option th:value="@{/mesin/view-all/}">---</option>
+                <option th:each="idKategori : ${listKategori}" th:text=${idKategori} th:value="@{/mesin/view-all/} + ${idKategori}"></option>
+            </select>
+        </div>
+        <br>
+        <table class="table" style="background-color: #daddfc; text-align: center;">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">Date Production</th>
+                <th scope="col">Capacity</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="mesin, iterationStatus: ${listMesin}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${mesin.nama}"></td>
+                <td th:text="${mesin.idKategori}"></td>
+                <td th:text="${mesin.tanggalDibuat}"></td>
+                <td th:text="${mesin.kapasitas}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <a class="btn btn-second-user" th:href="@{/}">Kembali</a>
+    </div>
+</div>
+<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>

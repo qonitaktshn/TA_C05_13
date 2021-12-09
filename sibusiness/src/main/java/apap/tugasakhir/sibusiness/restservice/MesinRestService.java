@@ -1,8 +1,11 @@
 package apap.tugasakhir.sibusiness.restservice;
 
-import apap.tugasakhir.sibusiness.rest.MesinDTO;
-import reactor.core.publisher.Mono;
+import apap.tugasakhir.sibusiness.rest.MesinDetail;
+
+import java.util.List;
+import java.util.Map;
 
 public interface MesinRestService {
-    Mono<MesinDTO> retrieveListMesin();
+    List<MesinDetail> getListMesin();
+    List<MesinDetail> getListMesinByKategori(int kategori);
 }

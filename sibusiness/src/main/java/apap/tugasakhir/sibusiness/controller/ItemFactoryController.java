@@ -39,7 +39,9 @@ public class ItemFactoryController {
         Model model
     ) {
         ItemFactoryModel itemFactory = itemFactoryService.getItemFactoryById(id);
-        itemFactory.setStatus(1);
+        itemFactoryRestService.acceptItemFact(id);
+        itemFactoryRestService.setApproverService(id);
+
         ItemFactoryDetail itemDetail = new ItemFactoryDetail();
         itemDetail.setNama(itemFactory.getNama());
         itemDetail.setHarga(itemFactory.getHarga());
@@ -47,23 +49,22 @@ public class ItemFactoryController {
         itemDetail.setStok(itemFactory.getStok());
         
         ItemFactoryDetail response = itemFactoryRestService.requestItemFactory(itemDetail);
-        System.out.println(response.getHarga());
-        System.out.println(itemDetail.getNama());
+        // System.out.println(response.getHarga());
+        // System.out.println(itemDetail.getNama());
       
         return "add-item-factory";
     }
 
-    @GetMapping(value = "/delete/{id}")
-    public String deleteItemFactory(
+    @GetMapping(value = "/decline/{id}")
+    public String declineItemFactory(
         @PathVariable Long id,
         RedirectAttributes redirectAttributes,
         Model model) {
             ItemFactoryModel itemFactory = itemFactoryService.getItemFactoryById(id);
-            itemFactory.setStatus(2);
-            itemFactoryService.delete(itemFactory);
-            
-            model.addAttribute("itemFactory", itemFactory);
-            return "redirect:/item-factory/view-all";
+            itemFactoryRestService.declineItemFact(id);
+         
+            model.addAttribute("nama", itemFactory.getNama());
+            return "decline-item";
         }
 
         

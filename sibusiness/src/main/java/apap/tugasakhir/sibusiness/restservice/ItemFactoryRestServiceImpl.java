@@ -2,6 +2,7 @@ package apap.tugasakhir.sibusiness.restservice;
 
 import apap.tugasakhir.sibusiness.model.ItemFactoryModel;
 import apap.tugasakhir.sibusiness.repository.ItemFactoryDB;
+import apap.tugasakhir.sibusiness.repository.UserDB;
 import apap.tugasakhir.sibusiness.model.UserModel;
 
 import java.util.Optional;
@@ -15,7 +16,9 @@ import org.springframework.web.reactive.function.client.WebClient;
 import apap.tugasakhir.sibusiness.rest.ItemFactoryDetail;
 import apap.tugasakhir.sibusiness.rest.Setting;
 import reactor.core.publisher.Mono;
+
 import java.util.NoSuchElementException;
+
 @Service
 @Transactional
 public class ItemFactoryRestServiceImpl implements ItemFactoryRestService {
@@ -27,6 +30,9 @@ public class ItemFactoryRestServiceImpl implements ItemFactoryRestService {
 
     @Autowired
     ItemFactoryDB itemFactoryDB;
+
+    @Autowired
+    UserDB userDB;
 
     @Override
     public ItemFactoryModel createItemFactory(ItemFactoryModel itemFactory) {
@@ -51,7 +57,6 @@ public class ItemFactoryRestServiceImpl implements ItemFactoryRestService {
                             .uri("/api/item")
                             .body(Mono.just(itemFactory), ItemFactoryDetail.class)
                             .retrieve().bodyToMono(ItemFactoryDetail.class).block();
-
         return post;
     }
 
@@ -69,14 +74,8 @@ public class ItemFactoryRestServiceImpl implements ItemFactoryRestService {
 
     @Override
     public void setApproverService(Long id){
-        Object approver = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = "";
-        if (approver instanceof UserModel) {
-            username = ((UserModel)approver).getUsername();
-        } else {
-            username = approver.toString();
-        }
+        UserModel user = userDB.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
         ItemFactoryModel itemFact = getItemFactoryById(id);
-        itemFact.setApprover(username);
+        itemFact.setApprover(user.getUsername());
     }
 }

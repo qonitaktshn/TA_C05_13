@@ -1,17 +1,21 @@
 package apap.tugasakhir.sibusiness.controller;
 
-import apap.tugasakhir.sibusiness.rest.ItemDetail;
-import apap.tugasakhir.sibusiness.restservice.ItemRestService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.stereotype.Controller;
+import apap.tugasakhir.sibusiness.rest.ItemDetail;
+import org.springframework.ui.Model;
 import java.util.Map;
+
+import apap.tugasakhir.sibusiness.restservice.ItemRestService;
 
 @Controller
 @RequestMapping("/api/v1")
+
 public class ItemController {
     @Autowired
     private ItemRestService itemRestService;
@@ -30,5 +34,6 @@ public class ItemController {
         ItemDetail item = itemRestService.getItemByUUID(uuid);
         model.addAttribute("item", item);
         return "detail-item";
+
     }
 }

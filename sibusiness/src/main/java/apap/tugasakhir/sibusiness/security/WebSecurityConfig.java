@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.http.HttpMethod;
 
 @Configuration
 @EnableWebSecurity
@@ -27,10 +26,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/api/v1/coupon/**").permitAll()
                 .antMatchers("/user/**").hasAuthority("Manager Business")
                 .antMatchers(HttpMethod.POST, "/api/v1/list-item-factory").permitAll()
+<<<<<<< HEAD
                 .antMatchers("/item-factory/view-all").hasAuthority("Manager Business")
                 .antMatchers(HttpMethod.GET, "/api/v1/list-item").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/v1/detail-item/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/list-mesin/**").hasAnyAuthority("Manager Business", "Staff_Product")
+=======
+                .antMatchers(HttpMethod.GET, "/api/v1/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/item/").hasAuthority("Manager Business")
+                .antMatchers(HttpMethod.POST, "/cabang/").hasAuthority("Manager Business")
+>>>>>>> 6c4d8f68eb0eba49035cf15bbce4d3704590a793
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()

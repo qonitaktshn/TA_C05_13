@@ -3,6 +3,7 @@ package apap.tugasakhir.sibusiness.restcontroller;
 import apap.tugasakhir.sibusiness.model.ItemFactoryModel;
 import apap.tugasakhir.sibusiness.rest.BaseResponse;
 import apap.tugasakhir.sibusiness.restservice.ItemFactoryRestServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -39,5 +40,4 @@ public class ItemFactoryRestController {
             return response;
         }
     }
-
 }

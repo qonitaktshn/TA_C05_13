@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Si-Business</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/user-style.css}" />
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header" style="font-size: 2rem;">Form Request Pembuatan Cabang</div>
+                <div class="card-body">
+                    <form method="POST" th:action="@{/cabang}" th:object="${cabang}">
+
+                        <label>Nama</label>
+                        <input required type="text" th:value="*{nama}" name="nama" class="form-control" />
+
+                        <label>Alamat</label>
+                        <input required type="text" th:value="*{alamat}" name="alamat" class="form-control" />
+
+                        <label>Ukuran</label>
+                        <input required type="number" th:value="*{ukuran}" name="ukuran" class="form-control" />
+
+                        <label>No Telp</label>
+                        <input required type="text" th:value="*{noTelp}" name="noTelp" class="form-control" />
+                        
+                        <br>
+
+                        <!-- <a class="btn btn-second-user" th:href="@{/}">Batal</a> -->
+                        <button type="submit" class="mx-2 btn btn-first-user float-right">Simpan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>

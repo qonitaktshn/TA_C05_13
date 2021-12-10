@@ -39,7 +39,7 @@ public class ItemRestServiceImpl implements ItemRestService {
             List<ItemDetail> itemMap = itemsByKategori.get(item.getKategori());
             if (itemMap == null) {
                 itemMap = new ArrayList<>();
-                itemsByKategori.put(item.getKategori(), itemMap);
+                itemsByKategori.put(item.getKategori().toString(), itemMap);
             }
             itemMap.add(item);
         }

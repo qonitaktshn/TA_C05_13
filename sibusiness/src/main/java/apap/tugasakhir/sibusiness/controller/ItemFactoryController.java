@@ -26,7 +26,7 @@ public class ItemFactoryController {
     private ItemFactoryRestService itemFactoryRestService;
 
     @GetMapping("/view-all")
-    private String getAllItemFactory(Model model) {
+    private String allRequestItemFactory(Model model) {
         List<ItemFactoryModel> listItemFactory = itemFactoryService.getListItemFacor();
         model.addAttribute("listItemFactory", listItemFactory);
         return "viewall-item-factory";

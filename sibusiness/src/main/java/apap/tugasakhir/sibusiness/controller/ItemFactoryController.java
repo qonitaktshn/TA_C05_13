@@ -20,7 +20,7 @@ public class ItemFactoryController {
     private ItemFactoryService itemFactoryService;
 
     @GetMapping("/view-all")
-    private String getAllItemFactory(Model model) {
+    private String allRequestItemFactory(Model model) {
         List<ItemFactoryModel> listItemFactory = itemFactoryService.getListItemFacor();
         model.addAttribute("listItemFactory", listItemFactory);
         return "viewall-item-factory";

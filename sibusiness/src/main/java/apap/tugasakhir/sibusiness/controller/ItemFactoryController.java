@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -28,7 +29,13 @@ public class ItemFactoryController {
     @GetMapping("/view-all")
     private String allRequestItemFactory(Model model) {
         List<ItemFactoryModel> listItemFactory = itemFactoryService.getListItemFacor();
-        model.addAttribute("listItemFactory", listItemFactory);
+        List<ItemFactoryModel> showList = new ArrayList<>();
+        for (ItemFactoryModel itemFactory:listItemFactory) {
+            if(itemFactory.getStatus() == 0 || itemFactory.getStatus() == 1) {
+                showList.add(itemFactory);
+            }
+        }
+        model.addAttribute("listItemFactory", showList);
         return "viewall-item-factory";
     }
 
@@ -47,8 +54,6 @@ public class ItemFactoryController {
         itemDetail.setStok(itemFactory.getStok());
         
         ItemFactoryDetail response = itemFactoryRestService.requestItemFactory(itemDetail);
-        System.out.println(response.getHarga());
-        System.out.println(itemDetail.getNama());
       
         return "add-item-factory";
     }

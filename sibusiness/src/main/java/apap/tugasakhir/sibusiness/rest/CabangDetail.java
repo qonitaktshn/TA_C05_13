@@ -3,8 +3,6 @@ package apap.tugasakhir.sibusiness.rest;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.apache.catalina.User;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,9 +16,9 @@ public class CabangDetail {
     private String alamat;
 
     @JsonProperty("ukuran")
-    private Integer ukuran;
+    private Long ukuran;
 
-    @JsonProperty("no_telp")
+    @JsonProperty("noTelp")
     private String noTelp;
 
     @JsonProperty("status")

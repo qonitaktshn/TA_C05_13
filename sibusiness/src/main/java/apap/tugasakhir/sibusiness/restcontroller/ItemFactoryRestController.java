@@ -1,9 +1,7 @@
 package apap.tugasakhir.sibusiness.restcontroller;
 
 import apap.tugasakhir.sibusiness.model.ItemFactoryModel;
-import apap.tugasakhir.sibusiness.rest.ItemFactoryDetail;
 import apap.tugasakhir.sibusiness.restservice.ItemFactoryRestServiceImpl;
-import reactor.core.publisher.Mono;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

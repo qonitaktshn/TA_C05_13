@@ -5,12 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import apap.tugasakhir.sibusiness.model.CabangModel;
 import apap.tugasakhir.sibusiness.rest.CabangDetail;
 import apap.tugasakhir.sibusiness.restservice.CabangRestService;
-import reactor.core.publisher.Mono;
+import apap.tugasakhir.sibusiness.service.CabangService;
 
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -19,37 +18,40 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class CabangController {
 
     @Autowired
-    CabangRestService cabangService;
+    CabangRestService cabangRestService;
+
+    @Autowired
+    CabangService cabangService;
 
     @GetMapping("/cabang")
-    public String addCabangForm(Model model,
-        @RequestParam(value="nama", required = false) String nama,
-        @RequestParam(value= "alamat", required =false) String alamat,
-        @RequestParam(value="ukuran", required = false) Integer ukuran,
-        @RequestParam(value = "no_telp", required =false) String no_telp
-    ) {
-        CabangDetail cabang = new CabangDetail();
-        cabang.setNama(nama);
-        cabang.setAlamat(alamat);
-        cabang.setUkuran(ukuran);
-        cabang.setNoTelp(no_telp);
-        cabang.setStatus(0);
-
-        // System.out.println(cabang.getNama());
-
+    public String addCabangForm(Model model) {
+        CabangModel cabang = new CabangModel();
         model.addAttribute("cabang", cabang);
+    
         return "form-add-cabang";
     }
 
-
-    @PostMapping(value="/cabang/")
+    @PostMapping(value="/cabang")
     public String addCabangSubmit(
-        @ModelAttribute CabangDetail cabang,
+        @ModelAttribute CabangModel cabang,
         RedirectAttributes redirectAttributes,
             Model model
     ) {
-        CabangDetail response = cabangService.addCabang(cabang);
-        // System.out.println(response.getNama());
+        CabangDetail cabangDetail = new CabangDetail();
+        cabangService.addCabang(cabang);
+
+        CabangModel newCabang = cabangService.getCabangById(cabang.getId());
+        cabangDetail.setNama(newCabang.getNama());
+        cabangDetail.setAlamat(newCabang.getAlamat());
+        cabangDetail.setNoTelp(newCabang.getNoTelp());
+        cabangDetail.setUkuran(newCabang.getUkuran());
+        cabangDetail.setStatus(0);
+        System.out.println(cabangDetail.getNama());
+        
+        CabangDetail cabangPost = cabangRestService.requestCabang(cabangDetail);
+        System.out.println(cabangPost.getNama());
+        
+        model.addAttribute("cabang", cabang);         
         return "add-cabang";
     }
 }

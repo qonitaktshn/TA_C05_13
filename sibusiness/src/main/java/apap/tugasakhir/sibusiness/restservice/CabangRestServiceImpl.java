@@ -2,8 +2,6 @@ package apap.tugasakhir.sibusiness.restservice;
 
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import apap.tugasakhir.sibusiness.rest.CabangDetail;
@@ -21,15 +19,14 @@ public class CabangRestServiceImpl implements CabangRestService {
     } 
     
     @Override
-    public CabangDetail addCabang(CabangDetail cabang) {
+    public CabangDetail requestCabang(CabangDetail cabang) {
         
         CabangDetail post = this.webClient.post()
                             .uri("/cabang")
                             .body(Mono.just(cabang), CabangDetail.class)
                             .retrieve().bodyToMono(CabangDetail.class).block();
         
-                            // System.out.println(cabang.getNama());
-                            System.out.println(post.getNama());
+                            System.out.println(cabang.getNama());
 
         return post;
     }

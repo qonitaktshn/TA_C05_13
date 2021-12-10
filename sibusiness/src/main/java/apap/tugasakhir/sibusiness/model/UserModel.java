@@ -58,5 +58,6 @@ public class UserModel implements Serializable {
     @JsonIgnore
     @OnDelete(action = OnDeleteAction.CASCADE)
     private ItemFactoryModel item_factory;
+
 }
 

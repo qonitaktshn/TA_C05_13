@@ -30,7 +30,7 @@
         <div class="my-3 d-flex justify-content-center">
             <a href="#" class="mx-2 btn btn-home" th:href="@{/api/v1/list-item}">Lihat daftar item SI-ITEM</a>
         </div>
-        <div class="my-3 d-flex justify-content-center">
+        <div sec:authorize="hasAnyAuthority('Manager Business')" class="my-3 d-flex justify-content-center">
             <a href="#" class="mx-2 btn btn-home" th:href="@{/cabang}">Request Pembuatan Cabang SI-RETAIL</a>
         </div>
     </div>

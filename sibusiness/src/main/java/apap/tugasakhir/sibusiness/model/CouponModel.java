@@ -10,6 +10,8 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -43,6 +45,8 @@ public class CouponModel implements Serializable {
 
     @NotNull
     @Column(nullable = false)
+    @DecimalMin("0.01")
+    @DecimalMax("1.00")
     private Float discountAmount;
 
     @NotNull

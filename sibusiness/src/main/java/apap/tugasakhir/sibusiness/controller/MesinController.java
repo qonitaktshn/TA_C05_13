@@ -11,12 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/mesin")
+@RequestMapping("/api/v1")
 public class MesinController {
     @Autowired
     private MesinRestService mesinRestService;
 
-   @RequestMapping(value = {"/view-all", "/view-all/{idKategori}"})
+   @RequestMapping(value = {"/list-mesin", "/list-mesin/{idKategori}"})
     private String getListMesin(@PathVariable(required = false) Integer idKategori, Model model) {
        List<MesinDetail> listMesin = mesinRestService.getListMesin();
        List<Integer> listKategori = new ArrayList<>();

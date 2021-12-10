@@ -18,8 +18,8 @@
         <br>
         <div>
             <select class="btn btn-first-user" onclick="window.location.href = this.value">
-                <option th:value="@{/mesin/view-all/}">---</option>
-                <option th:each="idKategori : ${listKategori}" th:text=${idKategori} th:value="@{/mesin/view-all/} + ${idKategori}"></option>
+                <option th:value="@{/api/v1/list-mesin/}">All</option>
+                <option th:each="idKategori : ${listKategori}" th:text=${idKategori} th:value="@{/api/v1/list-mesin/} + ${idKategori}"></option>
             </select>
         </div>
         <br>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Si-Business</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/user-style.css}" />
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header" style="font-size: 2rem;">Form Tambah Coupon</div>
+                <div class="card-body">
+                    <form method="POST" th:action="@{/coupon/add}" th:object="${coupon}">
+
+                        <label>Coupon Name</label>
+                        <input required type="text" th:value="*{couponName}" name="couponName" class="form-control" maxlength="20" placeholder="Pastikan nama coupon tidak lebih dari 20 karakter" />
+
+                        <label>Discount Amount (isi dengan max dua angka di belakang koma)</label>
+                        <input required type="number" min="0.01" max="1.00" step="0.01" th:value="*{discountAmount}" name="discountAmount" class="form-control" maxlength="4" placeholder="Min 0.00, Max 1.00" />
+
+                        <label>Expiry Date</label>
+                        <input required type="date" th:value="*{expiryDate}" name="expiryDate" class="form-control" />
+
+                        <label>Coupon Type</label>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Use Day</th>
+                                <th>Pilih?</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="couponType, iterationStatus : ${listAllCouponType}">
+                                <td th:text="${couponType.useDay}"></td>
+                                <td>
+                                    <input class="form-check-input" type="checkbox"
+                                           th:field="*{listCouponType}" th:value="${couponType.id}"
+                                           id="flexCheckDefault" style="margin-left: 0.5rem" />
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <a class="btn btn-second-user" th:href="@{/}">Batal</a>
+                        <button type="submit" class="mx-2 btn btn-first-user float-right">Simpan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>

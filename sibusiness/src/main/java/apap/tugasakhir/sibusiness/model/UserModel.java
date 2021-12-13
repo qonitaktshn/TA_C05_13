@@ -23,6 +23,7 @@ import java.util.List;
 @Table(name="pengguna")
 
 public class UserModel implements Serializable {
+
     @Id
     @Size(max = 200)
     @GeneratedValue(generator = "system-uuid")
@@ -50,11 +51,11 @@ public class UserModel implements Serializable {
     // Relasi dengan CouponModel
     @OneToMany(mappedBy = "creator", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<CouponModel> userCoupon;
+    private List<CouponModel> listCoupon;
 
     // Relasi dengan ItemFactory
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "id_itemfactory", referencedColumnName = "id")
     @JsonIgnore
     @OnDelete(action = OnDeleteAction.CASCADE)
     private ItemFactoryModel item_factory;

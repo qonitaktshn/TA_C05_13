@@ -16,25 +16,23 @@
         <h2 style="text-align: center" th:text=" 'Halo ' + ${#httpServletRequest.remoteUser} + '!'">Login as</h2>
         <h2 style="text-align: center">Selamat datang di SI-BUSINESS!</h2>
         <div class="d-flex justify-content-center">
-            <a sec:authorize="hasAuthority('Manager Business')" th:href="@{/user/view-all}" class="mx-2 btn btn-home">Lihat daftar user</a>
+            <a sec:authorize="hasAuthority('Manager Business')" th:href="@{/user/view-all}" class="mx-2 btn btn-home">Daftar User</a>
         </div>
         <div class="my-3 d-flex justify-content-center">
-            <a href="#" class="mx-2 btn btn-home">Lihat daftar permintaan kupon</a>
+            <a href="#" class="mx-2 btn btn-home">Daftar Coupon Creation Request</a>
         </div>
         <div class="my-3 d-flex justify-content-center">
-            <a href="#" class="mx-2 btn btn-home">Lihat daftar kupon</a>
+            <a href="#" class="mx-2 btn btn-home">Daftar Detail Info Coupon</a>
+        </div>
+        <hr style="height: 3px">
+        <div class="my-3 d-flex justify-content-center">
+            <a sec:authorize="hasAnyAuthority('Manager Business', 'Staff_Product')" class="mx-2 btn btn-home" th:href="@{/api/v1/list-mesin/}">Daftar Mesin dari SI-FACTORY</a>
         </div>
         <div class="my-3 d-flex justify-content-center">
-            <a sec:authorize="hasAuthority('Manager Business')" class="mx-2 btn btn-home" th:href="@{/api/v1/list-mesin/}">Lihat daftar mesin SI-FACTORY</a>
+            <a class="mx-2 btn btn-home" th:href="@{/api/v1/list-item}">Daftar Item dari SI-ITEM</a>
         </div>
-        <div class="my-3 d-flex justify-content-center">
-            <a sec:authorize="hasAuthority('Staff_Product')" class="mx-2 btn btn-home" th:href="@{/api/v1/list-mesin/}">Lihat daftar mesin SI-FACTORY</a>
-        </div>
-        <div class="my-3 d-flex justify-content-center">
-            <a href="#" class="mx-2 btn btn-home" th:href="@{/api/v1/list-item}">Lihat daftar item SI-ITEM</a>
-        </div>
-        <div sec:authorize="hasAnyAuthority('Manager Business')" class="my-3 d-flex justify-content-center">
-            <a href="#" class="mx-2 btn btn-home" th:href="@{/cabang}">Request Pembuatan Cabang SI-RETAIL</a>
+        <div sec:authorize="hasAuthority('Manager Business')" class="my-3 d-flex justify-content-center">
+            <a class="mx-2 btn btn-home" th:href="@{/cabang}">Request Buat Cabang ke SI-RETAIL</a>
         </div>
     </div>
 </div>

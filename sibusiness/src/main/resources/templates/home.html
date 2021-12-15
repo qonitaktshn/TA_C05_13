@@ -19,7 +19,7 @@
             <a sec:authorize="hasAuthority('Manager Business')" th:href="@{/user/view-all}" class="mx-2 btn btn-home">Daftar User</a>
         </div>
         <div class="my-3 d-flex justify-content-center">
-            <a href="#" class="mx-2 btn btn-home">Daftar Coupon Creation Request</a>
+            <a th:href="@{/coupon/list-coupon-request}" class="mx-2 btn btn-home">Daftar Coupon Creation Request</a>
         </div>
         <div class="my-3 d-flex justify-content-center">
             <a th:href="@{/coupon/list-coupon}" class="mx-2 btn btn-home">Daftar Detail Info Coupon</a>

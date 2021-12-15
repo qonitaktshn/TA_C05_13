@@ -45,7 +45,7 @@
                     <a class="btn btn-info" th:href="@{/coupon/request/} + ${coupon.id}">Detail</a>
                 </td>
                 <td>
-                    <button sec:authorize="hasAuthority('Staff_Marketing')" type="button" class="btn btn-first-user" data-toggle="modal" th:data-target="|#${iterationStatus.index}|">Setuju</button>
+                    <button sec:authorize="hasAuthority('Staff_Marketing')" type="button" class="btn btn-second-user" data-toggle="modal" th:data-target="|#${iterationStatus.index}|">Setuju</button>
                     <!-- Modal -->
                     <div class="modal fade" th:id="${iterationStatus.index}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -65,28 +65,7 @@
                     </div>
                 </td>
                 <td>
-                    <!-- Button trigger modal -->
-                    <button sec:authorize="hasAuthority('Staff_Marketing')" type="button" class="btn btn-first-user" data-toggle="modal" th:data-target="|#${iterationStatus.index}|">
-                        Hapus
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" th:id="${iterationStatus.index}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" th:text="'Apakah anda yakin ingin menghapus ' + ${coupon.couponName} + '?'" id="exampleModalLongTitle"></h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-warning" data-dismiss="modal">Batalkan</button>
-                                    <a class="btn btn-danger" th:href="@{/coupon/delete/} + ${coupon.id}">Ya, saya yakin</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <a class="btn btn-first-user" sec:authorize="hasAuthority('Staff_Marketing')" th:href="@{/coupon/deletereq/} + ${coupon.id}">Hapus</a>
                 </td>
             </tr>
             </tbody>

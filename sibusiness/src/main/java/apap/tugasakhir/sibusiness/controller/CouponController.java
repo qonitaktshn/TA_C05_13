@@ -69,7 +69,7 @@ public class CouponController {
         return "viewall-coupon";
     }
 
-    @GetMapping("list-request-coupon")
+    @GetMapping("list-coupon-request")
     public String getListRequestCoupon(Model model) {
         List<CouponModel> listRequestCoupon = couponService.getListRequestCoupon();
         model.addAttribute("listRequest", listRequestCoupon);
@@ -107,6 +107,17 @@ public class CouponController {
         return "redirect:/coupon/list-coupon";
     }
 
+    @GetMapping("deletereq/{id}")
+    public String deleteCouponReq(
+        @PathVariable Long id,
+        RedirectAttributes redirectAttributes
+    ) {
+        CouponModel coupon = couponService.getCouponById(id);
+        couponService.deleteCoupon(coupon);
+        redirectAttributes.addFlashAttribute("message", "Request Coupon berhasil dihapus");
+        return "redirect:/coupon/list-coupon-request";
+    }
+
     @GetMapping("/approve/{id}")
     public String approveCoupon(
         @PathVariable Long id,
@@ -116,6 +127,6 @@ public class CouponController {
         // CouponModel coupon = couponService.getCouponById(id);
         couponService.approveCoupon(id);
         redirectAttributes.addFlashAttribute("message", "Coupon berhasil dibuat");
-        return "redirect:/coupon/list-request-coupon"; 
+        return "redirect:/coupon/list-coupon"; 
     }
 }

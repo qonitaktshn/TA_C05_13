@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -25,5 +26,20 @@ public class CouponServiceImpl implements CouponService {
             coupon.setStatus(false);
         }
         couponDB.save(coupon);
+    }
+
+    @Override
+    public List<CouponModel> getListCoupon() {
+        return couponDB.findAll();
+    }
+
+    @Override
+    public CouponModel getCouponById(Long id) {
+        return couponDB.findCouponModelById(id);
+    }
+
+    @Override
+    public void deleteCoupon(CouponModel coupon) {
+        couponDB.delete(coupon);
     }
 }

@@ -13,6 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping("/coupon")
 public class CouponController {
@@ -51,5 +54,39 @@ public class CouponController {
             //return "redirect:/coupon/view-all-requested";
         }
         return "redirect:/";
+    }
+
+    @GetMapping("/list-coupon")
+    public String getListCoupon(Model model) {
+        List<CouponModel> listCoupon = couponService.getListCoupon();
+        List<CouponModel> listCouponTrueStatus = new ArrayList<>();
+        for (CouponModel coupon: listCoupon) {
+            if (coupon.getStatus().equals(true)) {
+                listCouponTrueStatus.add(coupon);
+            }
+        }
+        model.addAttribute("listCoupon", listCouponTrueStatus);
+        return "viewall-coupon";
+    }
+
+    @GetMapping("/detail-coupon/{id}")
+    private String getDetailCoupon(
+            @PathVariable Long id,
+            Model model) {
+        CouponModel coupon = couponService.getCouponById(id);
+        model.addAttribute("coupon", coupon);
+        return "detail-coupon";
+    }
+
+    @GetMapping("/delete/{id}")
+    private String deleteCoupon(
+            @PathVariable Long id,
+            RedirectAttributes redirectAttributes
+            ) {
+        System.out.println("Coba tes masuk ke sini " + id);
+        CouponModel coupon = couponService.getCouponById(id);
+        couponService.deleteCoupon(coupon);
+        redirectAttributes.addFlashAttribute("message", "Coupon berhasil dihapus");
+        return "redirect:/coupon/list-coupon";
     }
 }

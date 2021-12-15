@@ -64,7 +64,6 @@ public class ItemFactoryController {
 
     @GetMapping(value = "/decline/{id}")
     public String declineItemFactory(
-
         @PathVariable Long id,
         RedirectAttributes redirectAttributes,
         Model model) {

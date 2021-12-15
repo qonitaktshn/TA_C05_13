@@ -9,4 +9,6 @@ public interface CouponService {
     List<CouponModel> getListCoupon();
     CouponModel getCouponById(Long id);
     void deleteCoupon(CouponModel couponModel);
+    List<CouponModel> getListRequestCoupon();
+    void approveCoupon(Long id);
 }

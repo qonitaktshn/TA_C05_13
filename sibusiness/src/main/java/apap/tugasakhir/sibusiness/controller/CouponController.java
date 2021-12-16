@@ -69,6 +69,13 @@ public class CouponController {
         return "viewall-coupon";
     }
 
+    @GetMapping("list-coupon-request")
+    public String getListRequestCoupon(Model model) {
+        List<CouponModel> listRequestCoupon = couponService.getListRequestCoupon();
+        model.addAttribute("listRequest", listRequestCoupon);
+        return "viewall-request-coupon";
+    }
+
     @GetMapping("/detail-coupon/{id}")
     private String getDetailCoupon(
             @PathVariable Long id,
@@ -77,6 +84,16 @@ public class CouponController {
         model.addAttribute("coupon", coupon);
         return "detail-coupon";
     }
+
+    @GetMapping("/request/{id}")
+    private String getDetailReqCoupon(
+            @PathVariable Long id,
+            Model model) {
+        CouponModel coupon = couponService.getCouponById(id);
+        model.addAttribute("coupon", coupon);
+        return "detail-req-coupon";
+    }
+    
 
     @GetMapping("/delete/{id}")
     private String deleteCoupon(
@@ -88,5 +105,28 @@ public class CouponController {
         couponService.deleteCoupon(coupon);
         redirectAttributes.addFlashAttribute("message", "Coupon berhasil dihapus");
         return "redirect:/coupon/list-coupon";
+    }
+
+    @GetMapping("deletereq/{id}")
+    public String deleteCouponReq(
+        @PathVariable Long id,
+        RedirectAttributes redirectAttributes
+    ) {
+        CouponModel coupon = couponService.getCouponById(id);
+        couponService.deleteCoupon(coupon);
+        redirectAttributes.addFlashAttribute("message", "Request Coupon berhasil dihapus");
+        return "redirect:/coupon/list-coupon-request";
+    }
+
+    @GetMapping("/approve/{id}")
+    public String approveCoupon(
+        @PathVariable Long id,
+        RedirectAttributes redirectAttributes
+    ) {
+        System.out.println(id);
+        // CouponModel coupon = couponService.getCouponById(id);
+        couponService.approveCoupon(id);
+        redirectAttributes.addFlashAttribute("message", "Coupon berhasil dibuat");
+        return "redirect:/coupon/list-coupon"; 
     }
 }

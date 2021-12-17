@@ -44,14 +44,14 @@ public class CouponController {
             UserModel creator = userService.getUserByUsername(auth.getName());
             coupon.setCreator(creator);
             couponService.addCoupon(coupon);
-            //redirectAttributes.addFlashAttribute("message", "Coupon berhasil ditambahkan.");
-            //return "redirect:/coupon/view-all-created";
+            redirectAttributes.addFlashAttribute("message", "Coupon berhasil ditambahkan.");
+            return "redirect:/coupon/list-coupon";
         } else if (auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("Staff_Product"))) {
             UserModel creator = userService.getUserByUsername(auth.getName());
             coupon.setCreator(creator);
             couponService.addCoupon(coupon);
-            //redirectAttributes.addFlashAttribute("message", "Coupon berhasil direquest.");
-            //return "redirect:/coupon/view-all-requested";
+            redirectAttributes.addFlashAttribute("message", "Coupon berhasil direquest.");
+            return "redirect:/coupon/list-coupon-request";
         }
         return "redirect:/";
     }
@@ -127,6 +127,24 @@ public class CouponController {
         // CouponModel coupon = couponService.getCouponById(id);
         couponService.approveCoupon(id);
         redirectAttributes.addFlashAttribute("message", "Coupon berhasil dibuat");
-        return "redirect:/coupon/list-coupon"; 
+        return "redirect:/coupon/list-coupon";
     }
+
+    @GetMapping("/update/{id}")
+    public String updateCouponForm(@PathVariable Long id, Model model) {
+        CouponModel coupon = couponService.getCouponById(id);
+        model.addAttribute("coupon", coupon);
+        return "form-update-coupon";
+    }
+
+    @PostMapping("/update")
+    public String updateCouponSubmit(
+            @ModelAttribute CouponModel coupon, RedirectAttributes redirectAttributes
+    ){
+        couponService.updateCoupon(coupon);
+        redirectAttributes.addFlashAttribute("message", "Update Coupon berhasil disimpan!");
+        return "redirect:/coupon/list-coupon";
+    }
+
+
 }

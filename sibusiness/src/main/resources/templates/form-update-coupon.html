@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Si-Business</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/user-style.css}" />
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div th:text="${message}" class="alert alert-info" role="alert"></div>
+                <div class="card-header" style="font-size: 2rem;">Update Informasi Coupon</div>
+                <div class="card-body">
+                    <form th:action="@{/coupon/update}" th:object="${coupon}" method="POST">
+                        <input type="hidden" th:field="*{creator}" />
+                        <input type="hidden" th:field="*{listCouponType}" />
+                        <input type="hidden" th:field="*{status}" />
+
+                        <label>ID</label>
+                        <input type="number" name="id" class="form-control" th:value="*{id}" readonly/>
+                        <br>
+
+                        <label>Status</label>
+                        <div class="form-check" >
+                            <input class="form-check-input" type="radio" id="Disetujui" name="status" value="1" th:checked="${status == 1} ? 'checked'" disabled >
+                            <label class="form-check-label" for="Disetujui">Disetujui</label>
+                        </div>
+                        <br>
+
+                        <label>Kode Coupon</label>
+                        <input type="text" name="couponCode" class="form-control" th:value="*{couponCode}" readonly/>
+                        <br>
+
+                        <label>Nama Coupon</label>
+                        <input required class="form-control" type="text" name="couponName" th:value="*{couponName}" />
+                        <br>
+
+                        <label>Diskon Coupon</label>
+                        <input required type="number" min="0.01" max="1.00" step="0.01" th:value="*{discountAmount}" name="discountAmount" class="form-control" maxlength="4"/>
+                        <br>
+
+                        <label>Expired Date</label>
+                        <input required min="0" class="form-control" type="Date" name="expiryDate" th:value="*{expiryDate}" />
+                        <br>
+
+                        <label>Creator</label>
+                        <input class="form-control" type="text" name="creator" th:value="*{creator.username}" readonly/>
+                        <br><br>
+
+                        <a class="btn btn-second-user" th:href="@{/coupon/list-coupon}">Batal</a>
+                        <button type="submit" class="mx-2 btn btn-first-user float-right">Simpan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>

@@ -11,4 +11,5 @@ public interface CouponService {
     void deleteCoupon(CouponModel couponModel);
     List<CouponModel> getListRequestCoupon();
     void approveCoupon(Long id);
+    void updateCoupon(CouponModel coupon);
 }

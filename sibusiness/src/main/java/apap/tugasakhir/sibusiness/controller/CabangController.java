@@ -46,7 +46,6 @@ public class CabangController {
         cabangDetail.setNoTelp(newCabang.getNoTelp());
         cabangDetail.setUkuran(newCabang.getUkuran());
         cabangDetail.setStatus(0);
-        System.out.println(cabangDetail.getNama());
         
         CabangDetail cabangPost = cabangRestService.requestCabang(cabangDetail);
         System.out.println(cabangPost.getNama());

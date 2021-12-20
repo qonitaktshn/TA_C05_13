@@ -75,9 +75,11 @@ public class CouponRestServiceImpl implements CouponRestService {
         List<CouponModel> listCouponFiltered = new ArrayList<>();
 
         for (CouponModel cou : listCouponRaw) {
-            assignCouponCodeByNoCoupon(cou.getId());
-            if (getCouponByUseDay(cou) != null) {
-                listCouponFiltered.add(getCouponByUseDay(cou));
+            if (cou.getStatus()) {
+                assignCouponCodeByNoCoupon(cou.getId());
+                if (getCouponByUseDay(cou) != null) {
+                    listCouponFiltered.add(getCouponByUseDay(cou));
+                }
             }
         }
         return listCouponFiltered;

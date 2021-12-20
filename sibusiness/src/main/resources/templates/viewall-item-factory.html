@@ -53,7 +53,7 @@
                 <td th:if="${itemFactory.kategori} == 13">Alat & Perangkat Keras</td>
                 <td th:if="${itemFactory.kategori} == 14">Wedding</td>
                 <td th:text="${itemFactory.approver}"></td>
-                <td th:if="${itemFactory.status} == 0">
+                <td>
                     <a class="btn btn-second-user" th:href="@{/item-factory/submit/} + ${itemFactory.id}">Accept</a>
                     <a class="btn btn-first-user" th:href="@{/item-factory/decline/} + ${itemFactory.id}">Decline</a>
                 </td>

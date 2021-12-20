@@ -25,6 +25,8 @@ public class CabangRestServiceImpl implements CabangRestService {
                             .uri("/cabang")
                             .body(Mono.just(cabang), CabangDetail.class)
                             .retrieve().bodyToMono(CabangDetail.class).block();
+        
+                            System.out.println(cabang.getNama());
 
         return post;
     }

@@ -23,7 +23,7 @@ public class MesinRestServiceImpl implements MesinRestService{
 
     @Override
     public List<MesinDetail> getListMesin() {
-        JsonNode jsonNode = this.webClient.get().uri("/sifactory/v1/list-mesin").retrieve().bodyToMono(JsonNode.class).block();
+        JsonNode jsonNode = this.webClient.get().uri("").retrieve().bodyToMono(JsonNode.class).block();
         List<MesinDetail> mesinList = new ArrayList<MesinDetail>();
         for (JsonNode j : jsonNode) {
             MesinDetail mesin = new MesinDetail();

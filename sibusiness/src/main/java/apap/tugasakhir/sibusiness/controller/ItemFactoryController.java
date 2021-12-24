@@ -57,7 +57,6 @@ public class ItemFactoryController {
         itemDetail.setStok(itemFactory.getStok());
         
         ItemFactoryDetail response = itemFactoryRestService.requestItemFactory(itemDetail);
-
         return "add-item-factory";
     }
 

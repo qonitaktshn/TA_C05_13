@@ -41,7 +41,6 @@ public class CouponServiceImpl implements CouponService {
         for (CouponModel c: listRequest) {
             if (c.getStatus().equals(false)) {
                 newList.add(c);
-                System.out.println(c);
             }
         }
         return newList;

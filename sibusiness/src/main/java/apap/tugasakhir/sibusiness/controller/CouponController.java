@@ -122,7 +122,6 @@ public class CouponController {
         @PathVariable Long id,
         RedirectAttributes redirectAttributes
     ) {
-        System.out.println(id);
         couponService.approveCoupon(id);
         redirectAttributes.addFlashAttribute("message", "Coupon berhasil dibuat");
         return "redirect:/coupon/list-coupon";

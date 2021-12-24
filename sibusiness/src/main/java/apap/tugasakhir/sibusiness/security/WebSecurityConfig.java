@@ -35,6 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/api/v1/list-item-factory").permitAll()
                 .antMatchers(HttpMethod.POST, "/item/").hasAuthority("Manager Business")
                 .antMatchers(HttpMethod.POST, "/cabang/").hasAuthority("Manager Business")
+                .antMatchers("/coupon/delete/**").hasAuthority("Staff_Marketing")
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()

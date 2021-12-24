@@ -28,7 +28,6 @@
                 <th scope="col">Status</th>
                 <th scope="col">Creator</th>
                 <th scope="col">Detail</th>
-                <th scope="col" sec:authorize="hasAuthority('Staff_Marketing')">Ubah</th>
                 <th scope="col" sec:authorize="hasAuthority('Staff_Marketing')">Hapus</th>
             </tr>
             </thead>
@@ -44,9 +43,7 @@
                 <td>
                     <a class="btn btn-info" th:href="@{/coupon/detail-coupon/} + ${coupon.id}">Detail</a>
                 </td>
-                <td>
-                    <a sec:authorize="hasAuthority('Staff_Marketing')" class="btn btn-second-user" th:href="@{/}">Ubah</a>
-                </td>
+
                 <td>
                     <!-- Button trigger modal -->
                     <button sec:authorize="hasAuthority('Staff_Marketing')" type="button" class="btn btn-first-user" data-toggle="modal" th:data-target="|#${iterationStatus.index}|">

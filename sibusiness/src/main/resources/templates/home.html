@@ -19,6 +19,9 @@
             <a sec:authorize="hasAuthority('Manager Business')" th:href="@{/user/view-all}" class="mx-2 btn btn-home">Daftar User</a>
         </div>
         <div class="my-3 d-flex justify-content-center">
+            <a sec:authorize="hasAnyAuthority('Staff_Product', 'Staff_Marketing')" class="mx-2 btn btn-home" th:href="@{/coupon/add}">Tambah Coupon</a>
+        </div>
+        <div class="my-3 d-flex justify-content-center">
             <a th:href="@{/coupon/list-coupon-request}" class="mx-2 btn btn-home">Daftar Coupon Creation Request</a>
         </div>
         <div class="my-3 d-flex justify-content-center">

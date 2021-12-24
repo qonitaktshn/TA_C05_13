@@ -65,14 +65,6 @@ public class CouponServiceImpl implements CouponService {
 
     @Override
     public void updateCoupon(CouponModel coupon) {
-        System.out.println(coupon.getExpiryDate());
-        System.out.println(coupon.getListCouponType());
-        System.out.println(coupon.getStatus());
-        System.out.println(coupon.getId());
-        System.out.println(coupon.getDiscountAmount());
-        System.out.println(coupon.getCouponCode());
-        System.out.println(coupon.getCouponName());
-        System.out.println(coupon.getCreator());
         couponDB.save(coupon);
     }
 }

@@ -22,9 +22,11 @@ public class CabangRestServiceImpl implements CabangRestService {
     public CabangDetail requestCabang(CabangDetail cabang) {
         
         CabangDetail post = this.webClient.post()
-                            .uri("/cabang")
+                            .uri("/api/v1/cabang")
                             .body(Mono.just(cabang), CabangDetail.class)
                             .retrieve().bodyToMono(CabangDetail.class).block();
+        
+                            System.out.println(cabang.getNama());
 
         return post;
     }

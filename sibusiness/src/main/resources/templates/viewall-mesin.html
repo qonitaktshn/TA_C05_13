@@ -17,7 +17,8 @@
         <h2 style="text-align: center">Daftar Seluruh Mesin</h2>
         <br>
         <div>
-            <select class="btn btn-first-user" onclick="window.location.href = this.value">
+            <select class="btn btn-first-user" onchange="window.location.href = this.value">
+                <option value="" selected disabled hidden>Choose here</option>
                 <option th:value="@{/api/v1/list-mesin/}">All</option>
                 <option th:each="idKategori : ${listKategori}" th:text=${idKategori} th:value="@{/api/v1/list-mesin/} + ${idKategori}"></option>
             </select>

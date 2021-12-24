@@ -47,8 +47,10 @@ public class ItemFactoryController {
     ) {
         ItemFactoryModel itemFactory = itemFactoryService.getItemFactoryById(id);
 
-        itemFactoryRestService.acceptItemFact(id);
+        // itemFactoryRestService.acceptItemFact(id);
         itemFactoryRestService.setApproverService(id);
+
+        itemFactory.setStatus(1);
         
         ItemFactoryDetail itemDetail = new ItemFactoryDetail();
         itemDetail.setNama(itemFactory.getNama());

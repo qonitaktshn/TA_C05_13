@@ -22,7 +22,6 @@
             <thead class="thead-light">
             <tr>
                 <th scope="col">No</th>
-                <th scope="col">Kode Coupon</th>
                 <th scope="col">Nama Coupon</th>
                 <th scope="col">Total Diskon</th>
                 <th scope="col">Status</th>
@@ -35,7 +34,6 @@
             <tbody>
             <tr th:each="coupon, iterationStatus: ${listRequest}">
                 <td th:text="${iterationStatus.count}"></td>
-                <td th:text="${coupon.couponCode}"></td>
                 <td th:text="${coupon.couponName}"></td>
                 <td th:text="${coupon.discountAmount}"></td>
                 <td th:if="${coupon.status} == false">Belum Disetujui</td>

@@ -34,14 +34,28 @@
             <tr th:each="itemFactory, iterationStatus: ${listItemFactory}">
                 <td th:text="${iterationStatus.count}"></td>
                 <td th:text="${itemFactory.nama}"></td>
-                <td th:text="${itemFactory.status}"></td>
+                <td th:if="${itemFactory.status} == 0">Menunggu</td>
+                <td th:if="${itemFactory.status} == 1">Disetujui</td>
                 <td th:text="${itemFactory.stok}"></td>
                 <td th:text="${itemFactory.harga}"></td>
-                <td th:text="${itemFactory.kategori}"></td>
+                <td th:if="${itemFactory.kategori} == 1">Buku</td>
+                <td th:if="${itemFactory.kategori} == 2">Dapur</td>
+                <td th:if="${itemFactory.kategori} == 3">Makanan & Minuman</td>
+                <td th:if="${itemFactory.kategori} == 4">Elektronik</td>
+                <td th:if="${itemFactory.kategori} == 5">Fashion</td>
+                <td th:if="${itemFactory.kategori} == 6">Kecantikan & Perawatan Diri</td>
+                <td th:if="${itemFactory.kategori} == 7">Film & Musik</td>
+                <td th:if="${itemFactory.kategori} == 8">Gaming</td>
+                <td th:if="${itemFactory.kategori} == 9">Gadget</td>
+                <td th:if="${itemFactory.kategori} == 10">Kesehatan</td>
+                <td th:if="${itemFactory.kategori} == 11">Rumah Tangga</td>
+                <td th:if="${itemFactory.kategori} == 12">Furniture</td>
+                <td th:if="${itemFactory.kategori} == 13">Alat & Perangkat Keras</td>
+                <td th:if="${itemFactory.kategori} == 14">Wedding</td>
                 <td th:text="${itemFactory.approver}"></td>
-                <td>
+                <td th:if="${itemFactory.status} == 0">
                     <a class="btn btn-second-user" th:href="@{/item-factory/submit/} + ${itemFactory.id}">Accept</a>
-                    <a class="btn btn-first-user" th:href="@{/item-factory/delete/} + ${itemFactory.id}">Decline</a>
+                    <a class="btn btn-first-user" th:href="@{/item-factory/decline/} + ${itemFactory.id}">Decline</a>
                 </td>
             </tr>
             </tbody>

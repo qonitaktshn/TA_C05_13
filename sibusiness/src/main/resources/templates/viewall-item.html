@@ -14,7 +14,8 @@
 <div class="d-flex justify-content-center">
     <div class="container m-5 p-5" style="background: rgba(218, 221, 252, .85); border-radius: 10px">
         <div>
-            <a sec:authorize="hasAuthority('Manager Business')" class="btn btn-second-user" th:href="@{/item-factory/view-all}">Daftar Request Item Baru</a>
+            <a class="btn btn-second-user" th:href="@{/}">Kembali</a>
+            <a sec:authorize="hasAuthority('Manager Business')" class="btn btn-first-user" th:href="@{/item-factory/view-all}">Daftar Request Item Baru</a>
         </div>
         <br>
         <h2 style="text-align: center">Daftar Seluruh Item Berdasarkan Kategori</h2>

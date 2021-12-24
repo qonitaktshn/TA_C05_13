@@ -23,13 +23,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
-                .antMatchers(HttpMethod.GET,"/api/v1/coupon/**").permitAll()
                 .antMatchers("/user/**").hasAuthority("Manager Business")
-                .antMatchers(HttpMethod.POST, "/api/v1/list-item-factory").permitAll()
+                .antMatchers("/coupon/add").hasAnyAuthority("Staff_Product", "Staff_Marketing")
+                .antMatchers("/coupon/update/**").hasAuthority("Staff_Marketing")
+                .antMatchers("/coupon/list-coupon").permitAll()
                 .antMatchers("/item-factory/view-all").hasAuthority("Manager Business")
+                .antMatchers(HttpMethod.GET,"/api/v1/coupon/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/v1/list-item").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/v1/detail-item/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/list-mesin/**").hasAnyAuthority("Manager Business", "Staff_Product")
+                .antMatchers(HttpMethod.POST, "/api/v1/list-item-factory").permitAll()
                 .antMatchers(HttpMethod.POST, "/item/").hasAuthority("Manager Business")
                 .antMatchers(HttpMethod.POST, "/cabang/").hasAuthority("Manager Business")
                 .anyRequest().authenticated()
@@ -59,7 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
 
     @Autowired
-    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{
+    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
     }
 }

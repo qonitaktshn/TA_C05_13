@@ -45,7 +45,7 @@ public class CouponModel implements Serializable {
 
     @NotNull
     @Column(nullable = false)
-    @DecimalMin("0.01")
+    @DecimalMin("0.00")
     @DecimalMax("1.00")
     private Float discountAmount;
 

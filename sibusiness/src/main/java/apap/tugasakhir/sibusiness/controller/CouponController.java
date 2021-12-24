@@ -100,7 +100,6 @@ public class CouponController {
             @PathVariable Long id,
             RedirectAttributes redirectAttributes
             ) {
-        System.out.println("Coba tes masuk ke sini " + id);
         CouponModel coupon = couponService.getCouponById(id);
         couponService.deleteCoupon(coupon);
         redirectAttributes.addFlashAttribute("message", "Coupon berhasil dihapus");
@@ -124,7 +123,6 @@ public class CouponController {
         RedirectAttributes redirectAttributes
     ) {
         System.out.println(id);
-        // CouponModel coupon = couponService.getCouponById(id);
         couponService.approveCoupon(id);
         redirectAttributes.addFlashAttribute("message", "Coupon berhasil dibuat");
         return "redirect:/coupon/list-coupon";

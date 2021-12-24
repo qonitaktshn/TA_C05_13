@@ -43,7 +43,7 @@
 
           </tbody>
         </table>
-        <a sec:authorize="hasAuthority('Staff_Marketing')" class="btn btn-second-user" th:href="@{/coupon/update/} + ${coupon.id}">Ubah</a>
+        <a sec:authorize="hasAuthority('Staff_Marketing')" class="btn btn-first-user" th:href="@{/coupon/update/} + ${coupon.id}">Ubah</a>
         <a class="btn btn-second-user" th:href="@{/coupon/list-coupon}">Kembali</a>
       </div>
     </div>

@@ -56,7 +56,7 @@ public class ItemFactoryController {
         itemDetail.setKategori(itemFactory.getKategori());
         itemDetail.setStok(itemFactory.getStok());
         
-        ItemFactoryDetail response = itemFactoryRestService.requestItemFactory(itemDetail);
+        itemFactoryRestService.requestItemFactory(itemDetail);
         return "add-item-factory";
     }
 

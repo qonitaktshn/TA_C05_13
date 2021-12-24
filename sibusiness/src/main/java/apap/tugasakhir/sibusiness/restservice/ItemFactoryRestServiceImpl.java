@@ -25,7 +25,7 @@ public class ItemFactoryRestServiceImpl implements ItemFactoryRestService {
     private WebClient webClient;
 
     public ItemFactoryRestServiceImpl(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl(Setting.itemURL).defaultHeader("Content-Type", "application/json").build();
+        this.webClient = webClientBuilder.baseUrl(Setting.itemURL).build();
     }
 
     @Autowired
